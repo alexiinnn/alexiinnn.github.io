@@ -41,6 +41,10 @@
 
   @import "~vue-material/dist/theme/all"; // Apply the theme
 
+  .page-container {
+    font-family: 'Open Sans', sans-serif;
+  }
+
   .md-app {
     min-height: 100vh;
     /*max-height: 400px;*/
@@ -53,11 +57,22 @@
 
   .md-toolbar {
     padding: 0 20px;
+
+    .md-title {
+      color: white !important;
+      font-weight: 900;
+    }
+
+    .md-button .md-icon{
+      color: white !important;
+    }
   }
   .md-drawer {
     width: 230px;
     max-width: calc(100vw - 125px);
   }
+
+
 
   .md-content {
     background-image: url(./assets/back.png);
