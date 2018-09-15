@@ -121,6 +121,12 @@
       getTimestamp () {
         return +new Date()
       },
+      saveToLocalStorage () {
+        localStorage.setItem('actions', JSON.stringify(this.actions))
+        localStorage.setItem('freeCount', JSON.stringify(this.freeCount))
+        localStorage.setItem('presaleCount', JSON.stringify(this.presaleCount))
+        localStorage.setItem('entranceCount', JSON.stringify(this.entranceCount))
+      },
       increaseCounter (ticketType) {
         this[ticketType.toLowerCase() + 'Count']++
         this.actions.push({
@@ -130,6 +136,7 @@
           from: this.source
         })
         this.source = ''
+        this.saveToLocalStorage()
       },
       decreaseCounter (ticketType) {
         this[ticketType.toLowerCase() + 'Count']--
@@ -138,7 +145,14 @@
           ticketType: ticketType,
           actionType: 'removed'
         })
+        this.saveToLocalStorage()
       }
+    },
+    mounted () {
+      this.actions = JSON.parse(localStorage.actions)
+      this.freeCount = +localStorage.freeCount || 0
+      this.presaleCount = +localStorage.presaleCount || 0
+      this.entranceCount = +localStorage.entranceCount || 0
     }
   }
 </script>
